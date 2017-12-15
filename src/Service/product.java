@@ -50,6 +50,7 @@ public class product extends HttpServlet {
 		int ID = 0; 
 		String title ="";
 	    String desc = "";
+	    String categ = "";
 	    String dt ="";
 	    String linkpicture="";
 	    int idus=0;
@@ -61,9 +62,9 @@ public class product extends HttpServlet {
 		// 5> getlist product 
 		// 6> getlist product by user
 		
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/yyyy");
-         
-		LocalDate localDate ;
+	//	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/yyyy");
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-d");
+        LocalDate localDate ;
 		
 		
 		
@@ -76,11 +77,12 @@ public class product extends HttpServlet {
 			idus= Integer.parseInt(request.getParameter("idus")) ;
 			title = request.getParameter("title") ;
 	        desc = request.getParameter("desc") ;
+	        categ = request.getParameter("categ") ;
 	        dt = request.getParameter("date") ;
 	        localDate = LocalDate.parse(dt, formatter);
-	        codepostale=Integer.parseInt(request.getParameter("codep")) ;
-	        linkpicture= request.getParameter("link") ;;
-	     produit = new Produit(idus,title,desc,linkpicture,0,0,codepostale, localDate ) ; 
+	        codepostale=Integer.parseInt(request.getParameter("postale")) ;
+	        linkpicture= request.getParameter("link") ;
+	        produit = new Produit(idus,title,desc,categ,linkpicture,0,0,codepostale, localDate ) ; 
 			
 	         data.create(produit);
 			

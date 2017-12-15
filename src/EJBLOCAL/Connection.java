@@ -68,14 +68,8 @@ public class Connection implements ConnectionLocal {
     
     @Override
 	public void SubscribeRequest(Utilisateur u) {
-    	// à refaire avec persist
-    	
-		// Requete d' insert au niveau de la base
-			String s = "'"+u.getName()+"','"+u.getFname()+"','"+u.getEmail()+"',"+u.getPhone()+",'"+u.getSavedate()+"',"+u.getState()+",'"+u.getPassword()+"'";
-			String sql = "INSERT INTO Utilisateur (NAME,FNAME,EMAIL,PHONE,SAVEDATE,STATE,PASSWORD)VALUES("+s+");";
-			Query query = em.createNativeQuery(sql);
-			query.executeUpdate();
-	 }
+          em.persist(u);
+    	 }
     
     
     

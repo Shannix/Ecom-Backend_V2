@@ -23,7 +23,7 @@ public class SuiviCommande implements Serializable  {
 
 	 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY )
+	@GeneratedValue(strategy = GenerationType.AUTO )
 	@Column(name="IDSC")
 	private int idsc;
 	
@@ -48,8 +48,8 @@ public class SuiviCommande implements Serializable  {
 	
 	
 	public SuiviCommande() {}
-	public SuiviCommande(int idsc, int idcm, int idus, int idpr,  LocalDate date, int price ,int state  ) {
-		this.idsc = idsc;
+	public SuiviCommande( int idcm, int idus, int idpr,  LocalDate date, int price ,int state  ) {
+		 
 		this.idcm = idcm  ;
 		this.idus = idus; 
 		this.idpr= idpr; 

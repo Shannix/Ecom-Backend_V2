@@ -1,6 +1,7 @@
 package Service;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.ejb.EJB;
@@ -43,6 +44,9 @@ public class myoffers extends HttpServlet {
 			int ID = 0; 
 			int ST = 0; 
 			int price = 0; 
+			int Sidus = 0; 
+			int Sidpr = 0; 
+			int Sprice = 0; 
 			// 1> create 
 			// 2> update 
 			// 3> delete 
@@ -54,8 +58,13 @@ public class myoffers extends HttpServlet {
 			switch( choice ) {
 			case(0) : 
 			
-			
-			
+				Sidus= Integer.parseInt(request.getParameter("idus")) ;
+			    Sidpr= Integer.parseInt(request.getParameter("idpr")) ;
+			    Sprice= Integer.parseInt(request.getParameter("price")) ;
+			     
+				SuiviCommande dt = new SuiviCommande(1,Sidus, Sidpr,LocalDate.now(), Sprice,0);
+			    data.create(dt);
+			 
 			break;
 			
 			case(1) : 
@@ -97,7 +106,7 @@ public class myoffers extends HttpServlet {
 				
 			break; 
 			
-			case(5) :  // Acheteur
+			case(5) :  // vendeur
 				ID = Integer.parseInt(request.getParameter("ID")) ;
 			
 				Offers = data.getOffersByUser(ID) ;
