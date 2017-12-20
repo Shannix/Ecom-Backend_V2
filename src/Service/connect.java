@@ -41,9 +41,8 @@ public class connect extends HttpServlet {
 	 
 		 
 	 
-	  //String Login = request.getParameter("login"); 
-		String Login = "amine@gmail.com";
-		String password = request.getParameter("password");
+	  String Login = request.getParameter("username"); 
+	  String password = request.getParameter("password");
 		
 		//String Xapi = ""; 
 		//Xapi = request.getHeader("x-api-key");
@@ -58,7 +57,7 @@ public class connect extends HttpServlet {
 			  
 			
 			obj.put("Auth","true");	
-			obj.put("idus",  Integer.toString(u.getIdus())  ) ;
+			obj.put("idus",  u.getIdus()  ) ;
 			obj.put("name",  u.getName());
 			obj.put("fname", u.getFname());
 			obj.put("phone", Integer.toString(u.getPhone() )  );

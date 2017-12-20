@@ -35,7 +35,7 @@ public class ProduitDao implements ProduitDaoLocal {
     public List<Produit> getProducts(){
  		Produit produit = null;
  		 
- 		String sql = "SELECT u FROM Produit u  ";
+ 		String sql = "SELECT u FROM Produit u WHERE u.expiration_date>NOW()  ";
  		Query query = this.em.createQuery(sql);	 
  		 
  	   try {

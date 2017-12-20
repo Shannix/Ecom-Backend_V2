@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 import model.Produit;
 import model.SCIdentifier;
 import model.SuiviCommande;
+import model.Utilisateur;
 
 /**
  * Session Bean implementation class SuiviCommandeDao
@@ -96,6 +97,20 @@ public class SuiviCommandeDao implements SuiviCommandeDaoLocal {
         
     }
     
+    @Override
+    @Transactional 
+    public void updatePrice( int id , int price) {
+    	
+     	SuiviCommande p = em.find(SuiviCommande.class, id);
+     	
+		if(p!= null){
+			p.setprice(price);
+			this.em.merge(p);
+		}
+    	
+        
+    }
+    
     
     @Override
     @Transactional 
@@ -109,10 +124,35 @@ public class SuiviCommandeDao implements SuiviCommandeDaoLocal {
     	
     }
     
+    public SuiviCommande getSuiviCommandeInfo(int idpr, int idus){
+    	SuiviCommande ss = null;
+ 		 
+ 		String sql = "SELECT u FROM SuiviCommande u WHERE u.idus=:arg1 and u.idpr=:arg2 ";
+ 		Query query = this.em.createQuery(sql);	 
+ 		query.setParameter("arg1", idus); 
+ 		query.setParameter("arg2", idpr); 
+ 		 try {
+ 		ss = (SuiviCommande) query.getSingleResult();
+ 		 return ss;
+ 		 }catch(Exception e ) { return null; }
+ 		 
+ 	}
+    
+    
+    
     @Override
     @Transactional 
     public  SuiviCommande create ( SuiviCommande t) {
-        this.em.persist(t);
+    	
+    	SuiviCommande ss = getSuiviCommandeInfo(t.getIdpr(), t.getIdus());
+    	if(ss == null) {
+    		 this.em.persist(t);
+    	}else { if( ss.getstate() == 0  || ss.getstate() == 1   ) {
+    		updatePrice( ss.getIdsc() , t.getprice());
+    	}
+    	}
+    	
+       
         return t;
     }
     

@@ -13,6 +13,8 @@ public interface SuiviCommandeDaoLocal {
 	 public  SuiviCommande create ( SuiviCommande t) ;
 	 public void delete(final int id);
 	 public void update( int id, int state ) ;
-	 public void updateprice( int id , int price) ;	 
+	 public void updateprice( int id , int price) ;
+	 public SuiviCommande getSuiviCommandeInfo(int idpr, int idus);
+	 public void updatePrice( int id , int price);
 	 
 }
