@@ -4,6 +4,8 @@ package model;
 import java.io.Serializable;
 import java.lang.String;
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
+
 import javax.persistence.*;
 import org.json.simple.JSONObject;
  
@@ -128,6 +130,21 @@ public class Utilisateur implements  Serializable {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	
+	
+	public String toJson() {
+		
+		   
+		JSONObject obj = new JSONObject();
+		obj.put("idus", this.getIdus());
+		obj.put("nom", this.getName());
+		obj.put("prenom", this.getFname());
+		obj.put("email", this.getEmail());
+		obj.put("tel", this.getPhone());
+		obj.put("mdp", this.getPassword()); 
+	   
+		return obj.toString()	;
 	}
    
 }

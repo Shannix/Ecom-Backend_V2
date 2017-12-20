@@ -48,7 +48,6 @@ public class Produit implements Serializable {
 	@Column(name="CATEG")
 	private String categ;
 	
-	
 	@Column(name="LINKPICTURE")
 	private String linkpicture;
 	
