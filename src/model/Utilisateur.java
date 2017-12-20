@@ -142,7 +142,7 @@ public class Utilisateur implements  Serializable {
 		obj.put("prenom", this.getFname());
 		obj.put("email", this.getEmail());
 		obj.put("tel", this.getPhone());
-		obj.put("mdp", this.getPassword()); 
+		
 	   
 		return obj.toString()	;
 	}
